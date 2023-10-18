@@ -1,0 +1,6 @@
+<div id="sideBar">
+  <h3 (click)="navigateTO()">{{title}}</h3>
+  <ul *ngFor="let x of sideBar">
+    <li routerLink={{x.link}} routerLinkActive="active">{{x.name}}</li>
+  </ul>
+</div>

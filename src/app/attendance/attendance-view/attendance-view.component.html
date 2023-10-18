@@ -1,0 +1,62 @@
+<div id="universalComponentStyle">
+  <h2>Attendance Page</h2>
+  <p-table *ngIf="IncommingAttendanceDetails" [value]="IncommingAttendanceDetails" [paginator]="true" [rows]="3"
+    [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[3, 6, 9, 20]">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>EmployeeID</th>
+        <th>Name</th>
+        <th>Photo</th>
+        <th>Date-of-Birth</th>
+        <th>Department</th>
+        <th>Gender</th>
+        <th style="min-width:10rem">
+          <div class="flex align-items-center">
+            Date
+            <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
+          </div>
+        </th>
+        <th>PhoneNumber</th>
+        <th>Email</th>
+        <th>Present/Absent</th>
+        <th>With/Without</th>
+        <th>PermissionLetter</th>
+        <th>SendMail</th>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-employee>
+      <tr>
+        <td pFrozenColumn>{{ employee.EmployeeID }}</td>
+        <td pFrozenColumn>{{ employee.Name | uppercase }}</td>
+        <td pFrozenColumn><img src={{employee.Photo}} id="employeePhoto"></td>
+        <td>{{employee.DOB | date: 'MM/dd/yyyy'}}</td>
+        <td>{{employee.Department | uppercase}}</td>
+        <td>{{employee.Gender | uppercase}}</td>
+        <td>{{employee.Date | date: 'MM/dd/yyyy'}}</td>
+        <td>{{employee.PhoneNumber}}</td>
+        <td>{{employee.Email }}</td>
+        <td>
+          {{employee.Present | uppercase}}
+        </td>
+        <td>
+          {{employee.permissionStatus?employee.permissionStatus:'idle' | uppercase}}
+        </td>
+        <td>
+          {{employee.permission?employee.permission:'idle' | uppercase}}
+        </td>
+        <td><p-button (onClick)="sendmail(employee)">Send</p-button></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+      <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+
+    <ng-template pTemplate="paginatorright">
+      <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+  </p-table>
+  <div *ngIf="!IncommingAttendanceDetails" class="loader"><app-loader></app-loader></div>
+</div>

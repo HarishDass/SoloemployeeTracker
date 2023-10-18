@@ -1,0 +1,5 @@
+<div id="universalComponentStyle">
+  <h2>BAR CHART</h2>
+  <p-chart type="bar" *ngIf="x1" [data]="basicData" [options]="basicOptions"></p-chart>
+  <div *ngIf="!x1" class="loader"><app-loader></app-loader></div>
+</div>

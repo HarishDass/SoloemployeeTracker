@@ -1,0 +1,50 @@
+<div id="universalComponentStyle">
+  <h2>ACTIVE EMPLOYEES</h2>
+  <div class="card" *ngIf="employees.length">
+    <p-table #dt2 [value]="employees" [paginator]="true" [rows]="3" [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[3, 6, 9]"
+      [globalFilterFields]="['EmployeeNo', 'name']">
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Search keyword" />
+            <p-dropdown [options]="department" [(ngModel)]="selectedCity" optionLabel="department"
+              (onChange)="changeDepartment()"></p-dropdown>
+            <p-multiSelect [options]="newTableHead" [(ngModel)]="selectedCities" [filter]="true" optionLabel="name"
+              (onChange)="changeHead()"></p-multiSelect>
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th *ngFor="let item of TableHead">{{item.name}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-employee>
+        <tr>
+          <td>{{ employee.EmployeeID }}</td>
+          <td>{{ employee.name }}</td>
+          <td><img src={{employee.photo}} id="employeePhoto"></td>
+          <td>{{employee.DOB | date:'MM/dd/yyyy'}}</td>
+          <td>{{employee.department}}</td>
+          <td>{{employee.gender}}</td>
+          <td>{{employee.phoneNumber}}</td>
+          <td>{{employee.email}}</td>
+          <td>{{employee.nationality}}</td>
+          <td>{{employee.state}}</td>
+          <td><p-button label="Edit" (click)="edit(employee)"></p-button></td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+      </ng-template>
+      <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-table>
+  </div>
+  <div *ngIf="!employees.length" class="loader"><app-loader></app-loader></div>
+</div>

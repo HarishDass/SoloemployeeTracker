@@ -1,0 +1,13 @@
+<div id="wholePage">
+  <form [formGroup]="formgroup" (submit)="submit()" id="Form">
+    <h2>SignUp</h2>
+    <input type="text" pInputText formControlName="username" class="user" placeholder="username">
+    <input type="email" pInputText formControlName="Email" class="user" placeholder="Email">
+    <p-password [toggleMask]="true" [feedback]="true" formControlName="password" placeholder="password"></p-password>
+    <p-button type="submit" label="signUp"></p-button>
+    <div style="width: 100%;">
+      <p (click)="navigate()" id="signup">Login</p>
+    </div>
+  </form>
+  <p-toast></p-toast>
+</div>

@@ -1,0 +1,97 @@
+<div id="universalComponentStyle">
+  <h1 id="addEmployeeTitle">Add New Employee</h1>
+  <form [formGroup]="formgroup" class="employeeForm" (submit)="submit()">
+    <div class="formcontent"><label>Name<sup>*</sup></label>
+      <input type="text" pInputText formControlName="name" placeholder="eg: VIVEK" />
+    </div>
+    <div></div>
+    <div class="formcontent"> <label>DOB<sup>*</sup></label>
+      <p-calendar formControlName="DOB" styleClass="primengStyle" placeholder="eg: 23/04/2002"></p-calendar>
+    </div>
+    <div class="formcontent"><label>PhoneNumber<sup>*</sup></label>
+      <p-inputMask mask="9999999999" formControlName="phoneNumber" styleClass="primengStyle"
+        placeholder="eg: 9485858585"></p-inputMask>
+    </div>
+    <div class="formcontent"> <label>Nationality<sup>*</sup></label>
+      <input type="text" pInputText formControlName="nationality" placeholder="eg: INDIAN" />
+    </div>
+
+    <div class="formcontent"><label>Gender<sup>*</sup></label>
+      <div id="formcontentGender">
+        <div *ngFor="let category of gender" class="field-checkbox">
+          <p-radioButton [inputId]="category.name" [value]="category.name" formControlName="gender"></p-radioButton>
+          <label>{{ category.name }}</label>
+        </div>
+      </div>
+
+    </div>
+    <div class="formcontent"> <label>Department<sup>*</sup></label>
+
+      <p-dropdown formControlName="department" [options]="department" optionLabel="department"
+        styleClass="primengStyle"></p-dropdown>
+
+    </div>
+
+    <div class="formcontent"> <label>Active<sup>*</sup></label>
+      <div id="formcontentActive">
+        <div *ngFor="let category of active" class="field-checkbox">
+          <p-radioButton [inputId]="category.name" [value]="category.name" formControlName="active"></p-radioButton>
+          <label>{{ category.name }}</label>
+        </div>
+      </div>
+    </div>
+    <div class="formcontent"><label>AddressLine1<sup>*</sup></label>
+      <input type="text" pInputText formControlName="addressLine1" placeholder="eg: No.10,rayavaram,pudukkottai" />
+    </div>
+    <div class="formcontent"><label>AddressLine2</label>
+      <input type="text" pInputText formControlName="addressLine2" />
+    </div>
+    <div class="formcontent"><label>City<sup>*</sup></label>
+      <input type="text" pInputText formControlName="city" placeholder="eg: pudukkottai" />
+    </div>
+    <div class="formcontent"><label>State<sup>*</sup></label>
+      <input type="text" pInputText formControlName="state" placeholder="eg: TamilNadu" />
+    </div>
+    <div class="formcontent"><label>Pincode<sup>*</sup></label>
+      <p-inputMask mask="999999" formControlName="pincode" styleClass="primengStyle"
+        placeholder="eg: 622505"></p-inputMask>
+    </div>
+    <div class="formcontent"><label>fatherName<sup>*</sup></label>
+      <input type="text" pInputText formControlName="fatherName" placeholder="eg: VIVEKANAND" />
+    </div>
+    <div class="formcontent"><label>Photo<sup>*</sup></label>
+      <span class="btn btn-primary btn-file" id="photo">
+        <img [src]="PhotoBase64" width="100px" height="100px">
+        <input type="file" accept="image/*" formControlName="Photo" (change)="upload($event) ">
+      </span>
+    </div>
+
+    <div class="formcontent"><label>Qualification<sup>*</sup></label>
+      <input type="text" pInputText formControlName="Qualification" placeholder="eg: BTech-IT" />
+    </div>
+    <div class="formcontent"><label>CTC<sup>*</sup></label>
+      <p-inputNumber inputId="integeronly" formControlName="CTC" placeholder="eg: 2 In_Lakhs" styleClass="primengStyle">
+      </p-inputNumber>
+    </div>
+    <div class="formcontent"><label>Email<sup>*</sup></label>
+      <input type="text" pInputText formControlName="email" placeholder="eg: abcd123@gmail.com" />
+    </div>
+    <div class="formcontent"><label>EmergencyNumber</label>
+      <p-inputMask mask="9999999999" formControlName="emergencyNumber" styleClass=" primengStyle"
+        placeholder="eg: 8298494929"></p-inputMask>
+    </div>
+    <div class="formcontent"><label>AadharNumber<sup>*</sup></label>
+      <p-inputMask mask="9999-9999-9999" formControlName="AadharNumber" styleClass=" primengStyle"
+        placeholder="eg: 9398-2993-9383"></p-inputMask>
+    </div>
+    <div class="formcontent"><label>PanNumber<sup>*</sup></label>
+      <input type="text" pInputText formControlName="PanNumber" placeholder="eg: BJHSJ8447D" />
+    </div>
+    <div id="button">
+      <p-button label="Submit" type="submit" styleClass=" buttonstyle" *ngIf="!historyData"></p-button>
+      <p-button label="Update" styleClass=" buttonstyle" (onClick)="update()" *ngIf="historyData"></p-button>
+      <p-button label="Reset" (onClick)="Reset()" styleClass=" buttonstyle"></p-button>
+    </div>
+
+  </form>
+</div>

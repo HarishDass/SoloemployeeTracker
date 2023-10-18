@@ -1,0 +1,65 @@
+<div id="universalComponentStyle">
+  <h2>Attendance Page</h2>
+  <p-table *ngIf="EmployeeDetails" #dt2 [value]="EmployeeDetails" [paginator]="true" [rows]="3"
+    [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[3, 6, 9]"
+    [globalFilterFields]="['EmployeeNo', 'name']">
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')"
+            placeholder="Search keyword" />
+          <p-dropdown [options]="department" [(ngModel)]="selectedCity" optionLabel="department"
+            (onChange)="changeDepartment()"></p-dropdown>
+
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let item of TableHead">{{item.name}}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-employee>
+      <tr>
+        <td pFrozenColumn>{{ employee.EmployeeID }}</td>
+        <td pFrozenColumn>{{ employee.name }}</td>
+        <td pFrozenColumn><img src={{employee.photo}} id="employeePhoto"></td>
+        <td>{{employee.DOB | date:'dd/MM/yyyy'}}</td>
+        <td>{{employee.department}}</td>
+        <td>{{employee.gender}}</td>
+        <td>{{employee.phoneNumber}}</td>
+        <td>{{employee.email}}</td>
+        <td>
+          <div *ngFor="let category of status" class="field-checkbox">
+            <p-radioButton [value]="category" [(ngModel)]="employee.present"
+              (onClick)="showWithorWithout(employee)"></p-radioButton>
+            <label>{{ category.state }}</label>
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let category of permission" class="field-checkbox">
+            <p-radioButton [value]="category" [(ngModel)]="employee.permissionState" [disabled]="employee.disabled"
+              (onClick)="showPermission(employee)"></p-radioButton>
+            <label>{{ category.state }}</label>
+          </div>
+        </td>
+        <td>
+          <textarea rows=" 5" cols="30" name="formFields" [disabled]="employee.permissionDisabled" pInputTextarea
+            [(ngModel)]="employee.permission"></textarea>
+        </td>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+      <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+
+    <ng-template pTemplate="paginatorright">
+      <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+      <p-button type="button" (onClick)="submit()">submit</p-button>
+    </ng-template>
+  </p-table>
+  <div *ngIf="!EmployeeDetails" class="loader"><app-loader></app-loader></div>
+</div>

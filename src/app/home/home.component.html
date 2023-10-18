@@ -1,0 +1,11 @@
+<h1 class="titleBar">EmployeeTracker</h1>
+<div id="homePage">
+  <div *ngFor="let x of links" id="individualCards">
+    <p-card header={{x.name}} subheader={{x.details}} [style]="{ width: '360px' }" (click)="navigate(x.name)">
+      <ng-template pTemplate="header">
+        <img alt="Card" src={{x.image}} width="400" height="300" />
+      </ng-template>
+    </p-card>
+  </div>
+
+</div>

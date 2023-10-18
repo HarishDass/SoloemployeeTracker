@@ -1,0 +1,34 @@
+#wholePage {
+  width: 100%;
+  height: 97vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../../images/pexels-karolina-grabowska-4210784.jpg");
+  background-size: cover;
+}
+#wholePage h2 {
+  color: #555;
+}
+#Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #555;
+  border-radius: 5px;
+  height: 350px;
+  width: 300px;
+  gap: 20px;
+  background-color: rgb(255, 255, 255, 0.2);
+}
+#user {
+  width: 233px;
+}
+#signup {
+  float: right;
+  cursor: pointer;
+  color: #555;
+  margin-right: 10px;
+  transition: scale 1s;
+}

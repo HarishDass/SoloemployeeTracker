@@ -1,0 +1,65 @@
+#addEmployeeTitle {
+  text-align: center;
+  color: #555;
+}
+.employeeForm {
+  display: flex;
+  flex-direction: column;
+}
+.formcontent {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  margin-bottom: 3%;
+}
+.formcontent label {
+  font-size: 20px;
+  font-weight: 600;
+  color: #555;
+}
+.formcontent input {
+  width: 80%;
+}
+:host ::ng-deep .primengStyle {
+  width: 80%;
+}
+:host ::ng-deep .buttonstyle {
+  width: 100%;
+}
+#button {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+#formcontentGender {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+#formcontentActive {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#photo {
+  display: flex;
+  justify-content: center;
+  width: 78%;
+  margin-bottom: 20px;
+}
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type="file"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
